@@ -20,7 +20,7 @@ sudo apt-get install gcc g++ git git-core curl
 
 echo "Installing nodejs..."
 
-https://gist.github.com/isaacs/579814
+# https://gist.github.com/isaacs/579814
 echo 'export PATH=$HOME/local/bin:$PATH' >> ~/.bashrc
 . ~/.bashrc
 mkdir ~/local
@@ -30,6 +30,8 @@ curl http://nodejs.org/dist/node-latest.tar.gz | tar xz --strip-components=1
 ./configure --prefix=~/local
 make install
 curl https://www.npmjs.org/install.sh | sh
+
+echo "Installing softwares"
 
 # Text editor
 wget --directory-prefix=$TEMPPATH http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3083_amd64.deb
