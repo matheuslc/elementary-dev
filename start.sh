@@ -2,6 +2,10 @@
 
 echo "Hello bro :P"
 
+echo "deb http://repository.spotify.com stable non-free" >> ~/etc/apt/sources.list
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 94558F59
+sudo add-apt-repository ppa:deluge-team/ppa
+
 # TEMP Path
 TEMPPATH="elemantary-dev-temp"
 
@@ -9,7 +13,7 @@ TEMPPATH="elemantary-dev-temp"
 rm -rf $TEMPPATH
 mkdir $TEMPPATH
 
-# sudo apt-get update
+sudo apt-get update
 
 echo "Installing basic packages."
 sudo apt-get install gcc g++ git git-core curl
@@ -28,21 +32,22 @@ make install
 curl https://www.npmjs.org/install.sh | sh
 
 # Text editor
-echo 'Whats text editor you want to download ?'
-echo '1 - Sublime Text 3'
-echo '2 - ATOM'
+wget --directory-prefix=$TEMPPATH http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3083_amd64.deb
+sudo dpkg -i $TEMPATH/sublime-text_build-3083_amd64.deb
 
-read textEditor
+# Browsers
+wget --directory-prefix=$TEMPPATH https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i $TEMPATH/google-chrome-stable_current_amd64.deb
 
-case "$textEditor" in
-	"1")	
-		echo "Installing Sublime Text 3"
-	    wget --directory-prefix=$TEMPPATH http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3083_amd64.deb
-	    sudo dpkg -i $TEMPATH/sublime-text_build-3083_amd64.deb
-	    ;;
-  "2")
-		echo "Installing ATOM"
-		wget --directory-prefix=$TEMPPATH https://github.com/atom/atom/releases/download/v0.199.0/atom-amd64.deb
-		sudo dpkg -i $TEMPATH/atom-amd64.deb
-esac
+# Spotify
+sudo apt-get install spotify-client
 
+# VLC Player
+sudo apt-get install vlc
+
+# Torrent
+sudo apt-get install deluge
+
+# Tools
+npm install -g gulp
+npm install -g webpack
