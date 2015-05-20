@@ -2,20 +2,10 @@
 
 echo "Hello bro :P"
 
-cd ..
-cd ..
 sudo echo "deb http://repository.spotify.com stable non-free" >> /etc/apt/sources.list
-cd ~
 
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 94558F59
 sudo add-apt-repository ppa:deluge-team/ppa
-
-# TEMP Path
-TEMPPATH="elemantary-dev-temp"
-
-
-rm -rf $TEMPPATH
-mkdir $TEMPPATH
 
 sudo apt-get update
 
@@ -25,7 +15,7 @@ sudo apt-get install gcc g++ git git-core curl
 echo "Installing nodejs..."
 
 # https://gist.github.com/isaacs/579814
-echo 'export PATH=$HOME/local/bin:$PATH' >> ~/.bashrc
+export PATH=$HOME/local/bin:$PATH >> ~/.bashrc
 . ~/.bashrc
 mkdir ~/local
 mkdir ~/node-latest-install
@@ -38,12 +28,14 @@ curl https://www.npmjs.org/install.sh | sh
 echo "Installing softwares"
 
 # Text editor
-wget --directory-prefix=$TEMPPATH http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3083_amd64.deb
-sudo dpkg -i $TEMPATH/sublime-text_build-3083_amd64.deb
+wget http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3083_amd64.deb
+sudo dpkg -i sublime-text_build-3083_amd64.deb
+rm sublime-text_build-3083_amd64.deb
 
 # Browsers
-wget --directory-prefix=$TEMPPATH https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i $TEMPATH/google-chrome-stable_current_amd64.deb
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+rm google-chrome-stable_current_amd64.deb
 
 # Spotify
 sudo apt-get install spotify-client
